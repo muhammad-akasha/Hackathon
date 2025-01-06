@@ -14,6 +14,8 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
+const port = process.env.PORT || 3000;
+
 app.use(
   cors({
     origin: "http://localhost:5173", // This should match the frontend URL
@@ -33,8 +35,8 @@ app.use("/api/v1", orderRoutes);
 
 connectDB()
   .then(() => {
-    app.listen(process.env.PORT, () => {
-      console.log(`⚙️  Server is running at port : ${process.env.PORT}`);
+    app.listen(port, () => {
+      console.log(`⚙️  Server is running at port : ${port}`);
     });
   })
   .catch((err) => {
